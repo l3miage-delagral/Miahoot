@@ -29,7 +29,7 @@ export class AppComponent {
     });
     
     try {
-      await signInWithPopup(this.auth, new GoogleAuthProvider());
+      await signInWithPopup(this.auth, googleProvider);
     }catch (err) {
       console.log(err)
     }

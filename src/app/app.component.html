@@ -1,12 +1,15 @@
 <mat-toolbar color="primary">
+    <h1>Miahoot</h1>
     <ng-container *ngIf="user | async as U; else unlogged">
-        {{U.displayName}}
-        <img [src]="U.photoURL"/>
-        <button (click)="logout()">Log Out</button>
+        <div class="toolbar">
+            <button (click)="logout()" mat-raised-button color="accent">Log Out</button>
+            {{U.displayName}}
+        </div>
+        <img id="pp" [src]="U.photoURL"/>
     </ng-container>
 
     <ng-template #unlogged>
-        <button (click)="login()"> login with google</button>
+        <button id="signInButton" (click)="login()" mat-raised-button color="accent"> login with google</button>
     </ng-template>
 </mat-toolbar>
 

@@ -23,6 +23,7 @@ export class AppComponent {
 
   async login() {
     this.bsIsAuth.next(true);
+    
     const googleProvider = new GoogleAuthProvider();
     googleProvider.setCustomParameters({
       prompt: 'select_account'

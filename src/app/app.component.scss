@@ -1,6 +1,6 @@
 #pp {
     border-radius: 50%;
-    width: 50px;
+    width: 100%;
     }
 
 .toolbar{
@@ -11,9 +11,16 @@
 .toolbar button{
     margin-bottom: 50%;
     margin-top: 50%;
+    margin-right: 5px;
 }
 
 #signInButton {
     margin-left: auto;
     margin-right: 0;
+}
+
+#ppButton {
+    background-color: transparent;
+    width: 50px;
+    border-color: transparent;
 }

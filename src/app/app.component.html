@@ -2,10 +2,14 @@
     <h1>Miahoot</h1>
     <ng-container *ngIf="user | async as U; else unlogged">
         <div class="toolbar">
-            <button (click)="logout()" mat-raised-button color="accent">Log Out</button>
+            <!-- <button (click)="logout()" mat-raised-button color="accent">Log Out</button> -->
             {{U.displayName}}
         </div>
-        <img id="pp" [src]="U.photoURL"/>
+        <button id="ppButton" [matMenuTriggerFor]="menu"><img id="pp" [src]="U.photoURL"/></button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item ><a routerLink="accountConfig">My Account</a></button>
+            <button mat-menu-item (click)="logout()">Log out</button>
+          </mat-menu>
     </ng-container>
 
     <ng-template #unlogged>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "projet-miahoot-cd381": {
+      "hosting": {
+        "Miahoot": [
+          "projet-miahoot-cd381"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "projet-miahoot-cd381"
+  }
+}

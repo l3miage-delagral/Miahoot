@@ -1,1 +1,15 @@
-<h2>Allo</h2>
+<mat-toolbar color="primary">
+    <ng-container *ngIf="user | async as U; else unlogged">
+        {{U.displayName}}
+        <img [src]="U.photoURL"/>
+        <button (click)="logout()">Log Out</button>
+    </ng-container>
+
+    <ng-template #unlogged>
+        <button (click)="login()"> login with google</button>
+    </ng-template>
+</mat-toolbar>
+
+<mat-progress-spinner *ngIf="bsIsAuth | async" mode="indeterminate"></mat-progress-spinner>
+
+<router-outlet></router-outlet>

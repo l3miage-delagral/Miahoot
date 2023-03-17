@@ -5,7 +5,7 @@
             <!-- <button (click)="logout()" mat-raised-button color="accent">Log Out</button> -->
             {{U.displayName}}
         </div>
-        <button id="ppButton" [matMenuTriggerFor]="menu"><img id="pp" [src]="U.photoURL"/></button>
+        <button id="ppButton" [matMenuTriggerFor]="menu"><img id="pp" referrerpolicy="no-referrer" [src]="U.photoURL"/></button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item ><a routerLink="accountConfig">My Account</a></button>
             <button mat-menu-item (click)="logout()">Log out</button>

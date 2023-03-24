@@ -6,7 +6,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { getDoc } from 'firebase/firestore';
 import { BehaviorSubject, EMPTY, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { DataService } from './data.service';
+import { DataService, MiahootUser } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +15,11 @@ import { DataService } from './data.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  public readonly user: Observable<User | null> = EMPTY;
+  public readonly user: Observable<MiahootUser | undefined>;
   public bsIsAuth = new BehaviorSubject<boolean>(false)
     
   constructor(private auth: Auth, private firestore: Firestore, private dataService: DataService, private fb: FormBuilder) {
-    this.user = authState(this.auth);
+    this.user = dataService.obsMiahootUser$;
     
   }
 

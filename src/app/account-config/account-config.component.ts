@@ -21,13 +21,15 @@ export class AccountConfigComponent {
   
   constructor(private dataUserService : DataService, private fs : Firestore, private fb: FormBuilder){
     this.dataUserService.obsMiahootUser$.subscribe(
-      u => {if( u === undefined){
-        this.user = {
-          name : "",
-          photoUrl:""
-        }
+      u => {
+        if( u === undefined){
+        this.fg.controls.name.setValue("")
+        this.fg.controls.photoURL.setValue("https://cdn-icons-png.flaticon.com/512/1077/1077012.png")
+        this.fg.controls.photoFile.setValue(undefined)
       } else {
-        this.user = u
+        this.fg.controls.name.setValue(u.name)
+        this.fg.controls.photoURL.setValue(u.photoUrl)
+        this.fg.controls.photoFile.setValue(undefined)
       }
     }
     )
@@ -41,6 +43,13 @@ export class AccountConfigComponent {
       name: [""],
       photoURL: [""],
       photoFile: [undefined as undefined | File]
+    })
+  }
+
+  update(){
+    this.dataUserService.update({
+      name: this.fg.controls.name.value,
+      photoUrl: this.fg.controls.photoURL.value,
     })
   }
 }

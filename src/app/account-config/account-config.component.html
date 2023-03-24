@@ -1,8 +1,9 @@
 <h1>Account config incoming...</h1>
 
-<section [formGroup] = "fg">
-    <input formControlName = "name">
-    <input [formControl] = "fg.controls.name">
-</section>
+<form [formGroup] = "fg" (ngSubmit)="update()">
+    <input formControlName = "name", placeholder="Name">
+    <input formControlName = "photoURL">
+    <button type="submit">Submit</button>
+</form>
 
 <p>ton nom est <strong>{{this.fg.value.name}}</strong></p>

@@ -61,12 +61,12 @@ export class DataService{
     )
   }
 
-  update(fgUser: FormGroup<{ 
-    name:      FormControl<string>, 
-    photoURL:  FormControl<string> 
-    photoFile: FormControl<File | undefined> 
-    }>) {
-    
+  update(up: Partial<MiahootUser>) {
+    const user = this.auth.currentUser;
+    if (user) {
+      const userRef = doc(this.fs, `users/${user.uid}`).withConverter(conv)
+      updateDoc(userRef, up)
+    }
   }
 
 }

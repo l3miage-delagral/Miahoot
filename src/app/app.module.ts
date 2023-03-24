@@ -20,6 +20,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import { DataService } from './data.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 
 
 
@@ -45,6 +46,8 @@ import { DataService } from './data.service';
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatRadioModule,
+    FormsModule, 
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component} from '@angular/core';
+import { firebaseApp$ } from '@angular/fire/app';
 import { Auth, authState, signOut, User, GoogleAuthProvider, signInWithPopup, UserCredential } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { getDoc } from 'firebase/firestore';
 import { BehaviorSubject, EMPTY, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +17,11 @@ import { map } from 'rxjs/operators';
 export class AppComponent {
   public readonly user: Observable<User | null> = EMPTY;
   public bsIsAuth = new BehaviorSubject<boolean>(false)
-  public username!: string;
-
-  constructor(private auth: Auth, private firestore: Firestore) {
+    
+  constructor(private auth: Auth, private firestore: Firestore, private dataService: DataService, private fb: FormBuilder) {
     this.user = authState(this.auth);
-    this.pseudo = this.firestore.collection("users").get()
+    
   }
-
 
   async login() {
     this.bsIsAuth.next(true);

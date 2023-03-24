@@ -10,7 +10,7 @@ const routes: Routes = [
     component: AccueilComponent,
   }, {
     path: 'accountConfig',
-    component: AccountConfigComponent
+    component: AccountConfigComponent,
   },
   { path: '**', component: AccueilComponent }
 ];

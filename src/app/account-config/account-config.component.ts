@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy, Optional } from '@angular/core';
+import { Component } from '@angular/core';
 import { User } from '@angular/fire/auth';
-import { Firestore } from '@angular/fire/firestore';
+import { doc, Firestore } from '@angular/fire/firestore';
 import { updateDoc } from '@firebase/firestore';
 import { DataService, MiahootUser } from '../data.service';
-
 
 @Component({
   selector: 'app-account-config',
@@ -12,22 +11,25 @@ import { DataService, MiahootUser } from '../data.service';
 })
 export class AccountConfigComponent {
   
-  private user!: MiahootUser;
-  private newName!: string;
+  user !: MiahootUser;
 
-  constructor(private userDataService: DataService){
-    this.fireStore.then(user => {
-      if (user) {
-        this.user = user;
+  
+  constructor(private dataUserService : DataService, private fs : Firestore){
+    this.dataUserService.obsMiahootUser$.subscribe(
+      u => {if( u === undefined){
+        this.user = {
+          name : "",
+          photoUrl:""
+        }
+      } else {
+        this.user = u
       }
-    });
-  }
-
-  updateName() {
-    if (this.user && this.newName) {
-      const userRef = this.userDataService.uid;
-      updateDoc(userRef, { name: this.newName });
+    }
+    )
+    async (u : User) => {
+      await updateDoc(doc(this.fs,"users",u.uid),{
+        foo : 'bar'
+      })
     }
   }
-
 }

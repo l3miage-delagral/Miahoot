@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component} from '@angular/core';
 import { Auth, authState, signOut, User, GoogleAuthProvider, signInWithPopup, UserCredential } from '@angular/fire/auth';
+import { Firestore } from '@angular/fire/firestore';
+import { getDoc } from 'firebase/firestore';
 import { BehaviorSubject, EMPTY, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -12,12 +14,11 @@ import { map } from 'rxjs/operators';
 export class AppComponent {
   public readonly user: Observable<User | null> = EMPTY;
   public bsIsAuth = new BehaviorSubject<boolean>(false)
+  public username!: string;
 
-  constructor(private auth: Auth) {
-    if (auth) {
-      this.user = authState(this.auth);
-      
-    }
+  constructor(private auth: Auth, private firestore: Firestore) {
+    this.user = authState(this.auth);
+    this.pseudo = this.firestore.collection("users").get()
   }
 
 

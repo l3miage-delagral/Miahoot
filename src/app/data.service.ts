@@ -1,7 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Auth, authState, User } from '@angular/fire/auth';
 import { docData, Firestore, FirestoreDataConverter, QueryDocumentSnapshot, SnapshotOptions } from '@angular/fire/firestore';
-import { doc, getDoc, setDoc } from '@firebase/firestore';
+import { FormGroup } from '@angular/forms';
+import { doc, getDoc, setDoc, updateDoc } from '@firebase/firestore';
 import { filter, map, Observable, of, switchMap, tap } from 'rxjs';
 
 
@@ -59,4 +60,9 @@ export class DataService{
       })
     )
   }
+
+  update(fg: FormGroup) {
+    
+  }
+
 }

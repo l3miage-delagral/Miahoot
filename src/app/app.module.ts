@@ -19,8 +19,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
-import { DataService } from './data.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+
 
 
 
@@ -37,6 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -48,6 +51,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatRadioModule,
     FormsModule, 
     ReactiveFormsModule,
+    NgxMatFileInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

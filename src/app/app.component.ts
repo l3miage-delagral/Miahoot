@@ -18,7 +18,11 @@ export class AppComponent {
   public readonly user: Observable<MiahootUser | undefined>;
   public bsIsAuth = new BehaviorSubject<boolean>(false)
     
-  constructor(private auth: Auth, private firestore: Firestore, private dataService: DataService, private fb: FormBuilder) {
+  constructor(private auth: Auth, 
+              private firestore: Firestore, 
+              private dataService: DataService, 
+              private fb: FormBuilder) {
+
     this.user = dataService.obsMiahootUser$;
     
   }
